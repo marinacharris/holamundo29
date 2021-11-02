@@ -123,6 +123,10 @@ function App(){
     </div>
   )
 }*/
+
+/*
+//eventos generados por componente
+
 import ListaResultados from './ListaResultados';
 import FormularioNumeros from './FormularioNumeros';
 import {useState} from 'react';
@@ -147,17 +151,53 @@ function App(){
   }
   return(
     <div>
-      
-      {/*<form on onSubmit={sumar}>
-        <p>Ingrese el numero 1 <input type= "text" name= "valor1"/> </p>
-        <p>Ingrese el numero 2 <input type= "text" name= "valor2"/> </p>
-        <input type="submit" value= "Sumar"></input>
-      </form>*/}
-      
+     
       <FormularioNumeros onSumar={sumar}/>
       <ListaResultados resultados = {operaciones}/>
     </div>
   )
 }
+
+*/
+/*
+//hooks de efectos
+//cambiar en tiempo real el titulo de la pagina
+import {useEffect, useState} from 'react';
+
+function App(){
+  const [texto, setTexto] = useState("");
+  useEffect(()=>document.title = texto, [texto]);
+  function cambiar(e){
+    setTexto(e.target.value);
+  }
+
+  return(
+    <div>
+      <p><input type= "text" onChange={cambiar} /></p>
+      <p>{texto}</p>
+
+    </div>
+  )
+}
+*/
+
+//mostrar en tiempo real las coordenadas del mouse
+
+import {useState} from 'react';
+import CoordenadaPuntero from './CoordenadaPuntero';
+
+function App(){
+  const [mostrar, setMostrar] = useState(true)
+  function ocultar(){
+    setMostrar(false)
+  }
+  return(
+    <div>
+        {mostrar ? <CoordenadaPuntero/>: <p>Coordenadas ocultas</p>}
+        <button onClick={ocultar}>Ocultar</button>
+    </div>
+  )
+}
+
 
 export default App;
